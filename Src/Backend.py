@@ -52,9 +52,14 @@ def Init() -> bool:
     return not(_Cursor == None and _Connection == None)
     
 
-def Add(Table_Name, Data) -> bool:
-    if not Table_Name in ["TEACHER", "STUDENT"]:
-        print("Table Name not Found")
+def Add(Data) -> bool:
+        
+    if isinstance(Data, Student):
+        Table_Name = "STUDENT"
+    elif isinstance(Data, Teacher):
+        Table_Name = "TEACHER"
+    else:
+        print("Type: Data error")
         return
         
     Execute(f"""
